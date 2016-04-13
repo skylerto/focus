@@ -1,24 +1,63 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @task.title %>
-</p>
+    <div class="task">
+        <!-- -->
+        <h2><%= @task.title %></h2>
+      <%= @task.progress %>
+      <%= @task.estimated_progress %>
+      <%= @task.complete %>
 
-<p>
-  <strong>Progress:</strong>
-  <%= @task.progress %>
-</p>
+  </div>
 
-<p>
-  <strong>Estimated progress:</strong>
-  <%= @task.estimated_progress %>
-</p>
-
-<p>
-  <strong>Complete:</strong>
-  <%= @task.complete %>
-</p>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
+
+</div>
+
+<!-- Show all the current subtasks -->
+<div class="row">
+  <% @task.sub_tasks.each do |sub| %>
+    <%= link_to task_sub_task_url(:task_id => @task.id, :id => sub.id)  do %>
+      <div class="sub_task">
+        <!-- -->
+        <%= sub.title %>
+        <%= sub.progress %>
+        <%= sub.estimated_progress %>
+        <%= sub.complete %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<!-- add a new sub task -->
+<div class="row">
+ <h3>New Subtask</h3>
+    <%= form_for([@task, @task.sub_tasks.build]) do |f| %>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :progress %><br>
+    <%= f.number_field :progress %>
+  </div>
+  <div class="field">
+    <%= f.label :estimated_progress %><br>
+    <%= f.number_field :estimated_progress %>
+  </div>
+  <div class="field">
+    <%= f.label :complete %><br>
+    <%= f.check_box :complete %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+    <% end %>
+
+  </div>
+
+</div>
+

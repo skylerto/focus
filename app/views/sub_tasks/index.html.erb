@@ -5,21 +5,26 @@
 <table>
   <thead>
     <tr>
+      <th>Parent</th>
+      <th>Title</th>
+      <th>Progress</th>
+      <th>Estimated progress</th>
+      <th>Complete</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @sub_tasks.each do |sub_task| %>
+    <% @sub_tasks.each do |task| %>
       <tr>
-        <td><%= link_to 'Show', sub_task %></td>
-        <td><%= link_to 'Edit', edit_sub_task_path(sub_task) %></td>
-        <td><%= link_to 'Destroy', sub_task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= task.task_id %></td>
+        <td><%= task.title %></td>
+        <td><%= task.progress %></td>
+        <td><%= task.estimated_progress %></td>
+        <td><%= task.complete %></td>
+        <td><%= link_to 'Show', task_sub_task_url(:id => task.id) %></td>
       </tr>
     <% end %>
   </tbody>
-</table>
+</table><br>
 
-<br>
-
-<%= link_to 'New Sub task', new_sub_task_path %>

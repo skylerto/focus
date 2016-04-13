@@ -15,6 +15,7 @@ class SubTasksController < ApplicationController
   # GET /sub_tasks/new
   def new
     @sub_task = SubTask.new
+    @task = Task.find_by_id(params[:task_id])
   end
 
   # GET /sub_tasks/1/edit
@@ -24,11 +25,12 @@ class SubTasksController < ApplicationController
   # POST /sub_tasks
   # POST /sub_tasks.json
   def create
-    @sub_task = SubTask.new(sub_task_params)
+    @task = Task.find_by_id(params[:task_id])
+    @sub_task = @task.sub_tasks.create(sub_task_params)
 
     respond_to do |format|
       if @sub_task.save
-        format.html { redirect_to @sub_task, notice: 'Sub task was successfully created.' }
+        format.html { redirect_to @task, notice: 'Sub task was successfully created.' }
         format.json { render :show, status: :created, location: @sub_task }
       else
         format.html { render :new }
@@ -69,6 +71,6 @@ class SubTasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sub_task_params
-      params.fetch(:sub_task, {})
+      params.require(:sub_task).permit(:task_id, :title, :complete, :progress, :estimated_progress)
     end
 end

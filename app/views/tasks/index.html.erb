@@ -2,38 +2,26 @@
 
 <h1>Listing Tasks</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Progress</th>
-      <th>Estimated progress</th>
-      <th>Complete</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.title %></td>
-        <td><%= task.progress %></td>
-        <td><%= task.estimated_progress %></td>
-        <td><%= task.complete %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-      <% task.sub_tasks.each do |sub| %>
-        <td><%= sub.title %></td>
-        <td><%= sub.progress %></td>
-        <td><%= sub.estimated_progress %></td>
-        <td><%= sub.complete %></td>
-      <% end %>
+<% @tasks.each do |task| %>
+  <%= link_to task do %>
+    <div class="task">
+        <!-- -->
+      <%= task.title %>
+      <%= task.progress %>
+      <%= task.estimated_progress %>
+      <%= task.complete %>
+    <% task.sub_tasks.each do |sub| %>
+      <div class="sub_task">
+        <!-- -->
+        <%= sub.title %>
+        <%= sub.progress %>
+        <%= sub.estimated_progress %>
+        <%= sub.complete %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+    </div>
+  <% end %>
+<% end %>
 
-<br>
 
 <%= link_to 'New Task', new_task_path %>
