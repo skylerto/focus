@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  progress: 1
+  estimated_progress: 1
+  complete: false
+
+two:
+  title: MyString
+  progress: 1
+  estimated_progress: 1
+  complete: false

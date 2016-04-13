@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+
+Task.create(title: "Study for AI", progress: nil, estimated_progress: 5, complete: false)
+Task.create(itle: "finish focus rails app", progress: nil, estimated_progress: 10, complete: false)
+Task.create(title: "get coffee", progress: nil, estimated_progress: 1, complete: false)
+Task.create(title: "pickup my assignment", progress: nil, estimated_progress: 1, complete: true)
