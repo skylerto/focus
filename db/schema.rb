@@ -11,15 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413193541) do
+ActiveRecord::Schema.define(version: 20160413200645) do
+
+  create_table "sub_tasks", force: :cascade do |t|
+    t.integer  "task_id",            limit: 4
+    t.string   "title",              limit: 255
+    t.integer  "progress",           limit: 4,   default: 0
+    t.integer  "estimated_progress", limit: 4,   default: 0
+    t.boolean  "complete",           limit: 1,   default: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+  end
+
+  add_index "sub_tasks", ["task_id"], name: "index_sub_tasks_on_task_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
     t.string   "title",              limit: 255
-    t.integer  "progress",           limit: 4
-    t.integer  "estimated_progress", limit: 4
-    t.boolean  "complete",           limit: 1
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "progress",           limit: 4,   default: 0
+    t.integer  "estimated_progress", limit: 4,   default: 0
+    t.boolean  "complete",           limit: 1,   default: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
   end
 
 end

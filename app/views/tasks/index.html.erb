@@ -24,6 +24,12 @@
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% task.sub_tasks.each do |sub| %>
+        <td><%= sub.title %></td>
+        <td><%= sub.progress %></td>
+        <td><%= sub.estimated_progress %></td>
+        <td><%= sub.complete %></td>
+      <% end %>
     <% end %>
   </tbody>
 </table>
