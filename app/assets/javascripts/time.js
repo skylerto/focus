@@ -30,11 +30,29 @@ function doubleDigit(number){
  */
 var Clock = function(task) {
   this.task = $('.task').data('task');
+  this.url = $('.task').data('url');
   if(!this.timer){
     this.pom = new Pomodoro(0.1, 0.05);
     this.timer = this.pom.taskTimer;
   }
   $('.timer-title').html('<h3>Task</h3>');
+};
+
+/**
+ *
+ */
+Clock.prototype.updateProgress = function(){
+    this.task.progress++;
+    console.log();
+    $.ajax({
+      method: "PUT",
+      url: this.url + '/' + this.task.id,
+      dataType: "JSON",
+      data: { "sub_task": this.task }
+    }).done(function(msg, err) {
+      $('.task_progress').load(document.URL +  ' .task_progress');
+      //location.reload();
+    });
 };
 
 /**
@@ -58,13 +76,15 @@ Clock.prototype.done = function(){
         this.timer.reset();
      }
   } else {
+    this.updateProgress();
     if (confirm('Have you completed the task?')) {
       // Set the task to completed
+      this.task.complete = true;
       this.timer.reset();
     } else {
       if (confirm('Read for a break?')) {
         this.timer = this.pom.breakTimer;
-        $('.timer-title').html('<h3>Break</h3>');
+        $('.timer-title').html('<h3>Task</h3>');
       } else {
         this.timer.reset();
       }
@@ -83,7 +103,7 @@ Clock.prototype.start = function(){    var that = this;
       updatePomodoro(timer);
     });
   } else {
-    this.creaeTimer();
+    this.createTimer();
     this.timer.start(function(timer) {
       if (timer.duration <= 1){
         that._done();

@@ -1,9 +1,11 @@
 <div class="row">
   <p id="notice"><%= notice %></p>
 
-    <%= render 'layouts/pomodoro' %>
 
-    <%= content_tag "div", class: "task", data: {task: @task} do %>
+  <%= content_tag "div", class: "task", data: {task: @task, url: '/tasks'} do %>
+
+
+    <%= render 'layouts/pomodoro' %>
         <!-- -->
         <h2><%= @task.title %></h2>
       <%= @task.progress %>

@@ -42,10 +42,13 @@ class SubTasksController < ApplicationController
   # PATCH/PUT /sub_tasks/1
   # PATCH/PUT /sub_tasks/1.json
   def update
+    @task = Task.find_by_id(params[:task_id])
+    
+
     respond_to do |format|
       if @sub_task.update(sub_task_params)
-        format.html { redirect_to @sub_task, notice: 'Sub task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @sub_task }
+        format.html { redirect_to task_sub_task_url(:task_id => @task.id, :id => @sub_task.id), notice: 'Sub task was successfully updated.' }
+        format.json { render :show, status: :ok, location: task_sub_task_url(:task_id => @task.id, :id => @sub_task.id) }
       else
         format.html { render :edit }
         format.json { render json: @sub_task.errors, status: :unprocessable_entity }
@@ -72,6 +75,6 @@ class SubTasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sub_task_params
-      params.require(:sub_task).permit(:task_id, :title, :complete, :progress, :estimated_progress)
+      params.require(:sub_task).permit(:id, :task_id, :title, :complete, :progress, :estimated_progress)
     end
 end

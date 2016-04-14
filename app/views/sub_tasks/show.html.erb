@@ -2,12 +2,18 @@
 
 <div class="container">
   <div class="row">
+    <%= content_tag "div", class: "task", data: {task: @sub_task, url: '/tasks/' + @sub_task.task_id.to_s + '/sub_tasks'} do %>
     <%= render 'layouts/pomodoro' %>
-    <%= content_tag "div", class: "task", data: {task: @sub_task} do %>
       <h2><%= @sub_task.title %></h2>
-      <%= @sub_task.progress %>
-      <%= @sub_task.estimated_progress %>
-      <%= @sub_task.complete %>
+      <div class="task_progress">
+        <%= @sub_task.progress %>
+      </div>
+      <div class="estimated_progress">
+        <%= @sub_task.estimated_progress %>
+      </div>
+      <div class="complete">
+        <%= @sub_task.complete %>
+      </div>
     <% end %>
   <%= link_to 'Delete', task_sub_task_url(:id => @sub_task), :method => :delete %>
   </div>
