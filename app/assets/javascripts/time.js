@@ -30,6 +30,7 @@ function doubleDigit(number){
  */
 var Clock = function(task) {
   this.task = $('.task').data('task');
+  this.title = "Task";
   if(!this.timer){
     this.pom = new Pomodoro(0.1, 0.05);
     this.timer = this.pom.taskTimer;
@@ -48,10 +49,11 @@ Clock.prototype.onBreak = function(){
  */
 Clock.prototype.done = function(){
   // send update progress.
-  if(this._onBreak()){
+  if(this.onBreak()){
     if (confirm('Read to start?')) {
       this.timer = this.pom.taskTimer;
-        this.timer.reset();
+      this.title = "Break";
+      this.timer.reset();
      } else {
         this.timer.reset();
      }
@@ -62,6 +64,7 @@ Clock.prototype.done = function(){
     } else {
       if (confirm('Read for a break?')) {
         this.timer = this.pom.breakTimer;
+        this.title = "Break";
       } else {
         this.timer.reset();
       }
@@ -75,12 +78,12 @@ Clock.prototype.start = function(){    var that = this;
   if(this.timer){
     this.timer.start(function(timer) {
       if (timer.duration <= 1){
-        that._done();
+        that.done();
       }
       updatePomodoro(timer);
     });
   } else {
-    this.createTimer();
+    this.creaeTimer();
     this.timer.start(function(timer) {
       if (timer.duration <= 1){
         that._done();
