@@ -1,0 +1,15 @@
+{
+  "name": "pomodoro",
+  "version": "0.3.1",
+  "main": "dist/pomodoro.js",
+  "homepage": "https://github.com/skylerto/pomodoro",
+  "_release": "0.3.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.3.1",
+    "commit": "b5153b3cdb6d6996429d7583346e8666938f3e21"
+  },
+  "_source": "https://github.com/skylerto/pomodoro.git",
+  "_target": "^0.3.0",
+  "_originalSource": "pomodoro"
+}

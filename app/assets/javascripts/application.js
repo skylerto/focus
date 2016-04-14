@@ -14,4 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require pomodoro/build/pomodoro
+//= require pomodoro/build/timer
 //= require_tree .
+

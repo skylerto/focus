@@ -1,31 +1,42 @@
 <div class="row">
   <p id="notice"><%= notice %></p>
 
-    <div class="task">
+    <%= content_tag "div", class: "task", data: {task: @task} do %>
         <!-- -->
         <h2><%= @task.title %></h2>
       <%= @task.progress %>
       <%= @task.estimated_progress %>
       <%= @task.complete %>
 
-  </div>
+      <% end %>
 
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
 
+<%= render 'layouts/pomodoro' %>
+
 </div>
 
 <!-- Show all the current subtasks -->
 <div class="row">
+ <h3>Subtasks</h3>
   <% @task.sub_tasks.each do |sub| %>
     <%= link_to task_sub_task_url(:task_id => @task.id, :id => sub.id)  do %>
       <div class="sub_task">
         <!-- -->
-        <%= sub.title %>
-        <%= sub.progress %>
-        <%= sub.estimated_progress %>
-        <%= sub.complete %>
+        <div class="title">
+          <%= sub.title %>
+        </div>
+        <div class="task_progress">
+          <%= sub.progress %>
+        </div>
+        <div class="estimated_progress">
+          <%= sub.estimated_progress %>
+        </div>
+        <div class="complete">
+          <%= sub.complete %>
+        </div>
       </div>
     <% end %>
   <% end %>
@@ -33,7 +44,7 @@
 
 <!-- add a new sub task -->
 <div class="row">
- <h3>New Subtask</h3>
+ <h4>New Subtask</h4>
     <%= form_for([@task, @task.sub_tasks.build]) do |f| %>
   <div class="field">
     <%= f.label :title %><br>
