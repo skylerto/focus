@@ -56,9 +56,10 @@ class SubTasksController < ApplicationController
   # DELETE /sub_tasks/1
   # DELETE /sub_tasks/1.json
   def destroy
+    @task = Task.find_by_id(params[:task_id])
     @sub_task.destroy
     respond_to do |format|
-      format.html { redirect_to sub_tasks_url, notice: 'Sub task was successfully destroyed.' }
+      format.html { redirect_to @task, notice: 'Sub task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -1,6 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h2><%= @sub_task.title %></h2>
-        <%= @sub_task.progress %>
-        <%= @sub_task.estimated_progress %>
-        <%= @sub_task.complete %>
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/pomodoro' %>
+    <%= content_tag "div", class: "task", data: {task: @sub_task} do %>
+      <h2><%= @sub_task.title %></h2>
+      <%= @sub_task.progress %>
+      <%= @sub_task.estimated_progress %>
+      <%= @sub_task.complete %>
+    <% end %>
+  <%= link_to 'Delete', task_sub_task_url(:id => @sub_task), :method => :delete %>
+  </div>
+</div>

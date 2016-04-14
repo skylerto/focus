@@ -1,6 +1,8 @@
 <div class="row">
   <p id="notice"><%= notice %></p>
 
+    <%= render 'layouts/pomodoro' %>
+
     <%= content_tag "div", class: "task", data: {task: @task} do %>
         <!-- -->
         <h2><%= @task.title %></h2>
@@ -14,7 +16,7 @@
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
 
-<%= render 'layouts/pomodoro' %>
+
 
 </div>
 

@@ -8,8 +8,8 @@
  * @method updatePomodoro
  */
 function updatePomodoro(timer){
-  var minutes = document.getElementById("minutes").innerHTML = doubleDigit(timer.minutes);
-  var seconds = document.getElementById("seconds").innerHTML = doubleDigit(timer.seconds - 1);
+  document.getElementById("minutes").innerHTML = doubleDigit(timer.minutes);
+  document.getElementById("seconds").innerHTML = doubleDigit(timer.seconds - 1);
 }
 
 
@@ -30,11 +30,11 @@ function doubleDigit(number){
  */
 var Clock = function(task) {
   this.task = $('.task').data('task');
-  this.title = "Task";
   if(!this.timer){
     this.pom = new Pomodoro(0.1, 0.05);
     this.timer = this.pom.taskTimer;
   }
+  $('.timer-title').html('<h3>Task</h3>');
 };
 
 /**
@@ -52,7 +52,7 @@ Clock.prototype.done = function(){
   if(this.onBreak()){
     if (confirm('Read to start?')) {
       this.timer = this.pom.taskTimer;
-      this.title = "Break";
+      $('.timer-title').html('<h3>Break</h3>');
       this.timer.reset();
      } else {
         this.timer.reset();
@@ -64,7 +64,7 @@ Clock.prototype.done = function(){
     } else {
       if (confirm('Read for a break?')) {
         this.timer = this.pom.breakTimer;
-        this.title = "Break";
+        $('.timer-title').html('<h3>Break</h3>');
       } else {
         this.timer.reset();
       }
