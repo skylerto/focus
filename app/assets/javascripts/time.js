@@ -29,8 +29,8 @@ function doubleDigit(number){
  *
  */
 var Clock = function(task) {
-  this.task = $('.task').data('task');
-  this.url = $('.task').data('url');
+  this.task = $('#task').data('task');
+  this.url = $('#task').data('url');
   if(!this.timer){
     this.pom = new Pomodoro(0.1, 0.05);
     this.timer = this.pom.taskTimer;
@@ -43,7 +43,6 @@ var Clock = function(task) {
  */
 Clock.prototype.updateProgress = function(){
     this.task.progress++;
-    console.log();
     var payload;
     if (this.task.task_id){
      payload = { "sub_task": this.task };
@@ -57,7 +56,7 @@ Clock.prototype.updateProgress = function(){
       data: payload
     }).done(function(msg, err) {
       console.log(document.URL +  ' .task_progress');
-      $('.task_progress').load(document.URL +  ' .task_progress');
+      $('.progression').load(document.URL +  ' .progression');
       //location.reload();
     });
 };

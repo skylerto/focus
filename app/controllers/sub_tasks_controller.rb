@@ -1,5 +1,9 @@
 class SubTasksController < ApplicationController
+
+  before_action :authenticate_user!
   before_action :set_sub_task, only: [:show, :edit, :update, :destroy]
+  layout 'admin'
+
 
   # GET /sub_tasks
   # GET /sub_tasks.json
@@ -20,6 +24,8 @@ class SubTasksController < ApplicationController
 
   # GET /sub_tasks/1/edit
   def edit
+    @task = Task.find_by_id(params[:task_id])
+    @sub_task = SubTask.find_by_id(params[:id])
   end
 
   # POST /sub_tasks
@@ -71,6 +77,7 @@ class SubTasksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_sub_task
       @sub_task = SubTask.find(params[:id])
+      @tasks = Task.where(user_id: current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

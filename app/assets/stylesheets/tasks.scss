@@ -6,46 +6,113 @@
 .sidebar {
   width:20%;
   float: left;
+  height:100%;
+  position: absolute;
+  width: 300px;
   padding: 2em;
   padding-left: 4em;
-  height: 100%;
   background-color: #262A34;
   h3 {
     color: white;
     margin-bottom: 2em;
   }
+
   .task {
+    color: white;
     .task_title {
       width:80%;
       float:left;
-      color: white;
-    margin-bottom: 1em;
+      margin-bottom: 1em;
     }
     .task_pomodoro {
-      color: white;
       width:15%;
       float:left;
       margin-bottom: 1em;
     }
   }
+
   .sub_task {
+    color:#727985;
     .sub_task_title {
-      color:#727985;
       width:80%;
       float:left;
       margin-bottom: 1em;
     }
     .sub_task_pomodoro {
-      color:#727985;
       width:15%;
       float:left;
       margin-bottom: 1em;
     }
   }
+  .active {
+    color: #4A90E2;
+  }
 }
 
+.pomodoro {
+    h3 {
+     font-size: 3em;
+     text-align: center;
+    }
+  .timer {
+    h3 {
+      margin-bottom: 0.5em;
+    }
+  }
+  .options {
+    width: 135px;
+    margin: 0 auto;
+  }
+}
+
+.navigation {
+  width:80%;
+  float:left;
+  margin-left: 300px;
+}
 
 .main {
   width:75%;
   float:left;
+  margin-left: 300px;
+  padding: 2em;
+  padding-left: 4em;
+  #task {
+    h2 {
+      font-size: 4em;
+      text-align: center;
+    }
+    .estimated_progress {
+      font-size: 2em;
+      margin: 1em auto;
+      text-align: center;
+      padding-top: 1em;
+      padding-bottom: 1em;
+      .stay {
+        color: #4A90E2;
+      }
+      div {
+        margin-top: 1em;
+      }
+
+    }
+    .task_progress {
+      font-size: 2em;
+      padding-top: 1em;
+      padding-bottom: 1em;
+      text-align: center;
+      margin: 1em auto;
+      .progression {
+        color: #4A90E2;
+      }
+      div {
+        margin-top: 1em;
+      }
+    }
+  }
 }
+
+.footer {
+  clear:both;
+}
+

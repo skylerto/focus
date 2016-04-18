@@ -2,20 +2,24 @@
   <p id="notice"><%= notice %></p>
 
 
-  <%= content_tag "div", class: "task", data: {task: @task, url: '/tasks'} do %>
+  <%= content_tag "div", id: "task", data: {task: @task, url: '/tasks'} do %>
 
-
+    <%= link_to 'Edit', edit_task_path(@task) %>
     <%= render 'layouts/pomodoro' %>
-        <!-- -->
-        <h2><%= @task.title %></h2>
-
-
-      <div class="task_progress">
-        <%= @task.progress %>
+    <!-- -->
+      <div class="row">
+        <div class="col-md-6 task_progress">
+          <div class="progression"><%= @task.progress || 0 %></div>
+          <div>Current Pomodoros</div>
+        </div>
+        <div class="col-md-6 estimated_progress">
+          <div class="stay"><%= @task.estimated_progress %></div>
+          <div>Estimate Pomodoros</div>
+        </div>
       </div>
-      <div class="estimated_progress">
-        <%= @task.estimated_progress %>
-      </div>
+
+      <h2><%= @task.title %></h2>
+
       <div class="complete">
         <%= @task.complete %>
       </div>
@@ -23,35 +27,10 @@
       <% end %>
 
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
 
 
 
-</div>
-
-<!-- Show all the current subtasks -->
-<div class="row">
- <h3>Subtasks</h3>
-  <% @task.sub_tasks.each do |sub| %>
-    <%= link_to task_sub_task_url(:task_id => @task.id, :id => sub.id)  do %>
-      <div class="sub_task">
-        <!-- -->
-        <div class="sub_task_title">
-          <%= sub.title %>
-        </div>
-        <div class="sub_task_progress">
-          <%= sub.progress %>
-        </div>
-        <div class="sub_task_estimated_progress">
-          <%= sub.estimated_progress %>
-        </div>
-        <div class="sub_task_complete">
-          <%= sub.complete %>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
 </div>
 
 <!-- add a new sub task -->

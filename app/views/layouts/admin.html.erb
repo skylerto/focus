@@ -7,26 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="content">
     <div class="sidebar">
       <h3>Tasks</h3>
       <% @tasks.each do |task| %>
-        <div class="task">
-          <div class="task_title"><%= task.title %></div>
-          <div class="task_pomodoro"><%= task.progress || 0 %>/<%= task.estimated_progress %></div>
-        </div>
-        <!-- loop over subtasks -->
-        <% task.sub_tasks.each do |sub| %>
-          <%= link_to task_sub_task_url(:task_id => task.id, :id => sub.id)  do %>
-            <div class="sub_task">
-              <div class="sub_task_title"><%= sub.title %></div>
-              <div class="sub_task_pomodoro"><%= sub.progress || 0 %>/<%= sub.estimated_progress %></div>
+        <%= link_to task do %>
+
+            <div class="task <%= active_class(task) %>">
+              <div class="task_title"><%= task.title %></div>
+              <div class="task_pomodoro"><%= task.progress || 0 %>/<%= task.estimated_progress %></div>
             </div>
-          <% end %>
-        <% end %> <!-- end subtask look-->
+            <!-- loop over subtasks -->
+            <% task.sub_tasks.each do |sub| %>
+                <%= link_to task_sub_task_url(:task_id => task.id, :id => sub.id)  do %>
+                  <div class="sub_task <%= active_class(task_sub_task_url(:task_id => task.id, :id => sub.id)) %>">
+                    <div class="sub_task_title"><%= sub.title %></div>
+                    <div class="sub_task_pomodoro"><%= sub.progress || 0 %>/<%= sub.estimated_progress %></div>
+                  </div>
+                <% end %>
+            <% end %>
+          <% end %> <!-- end subtask look-->
       <% end %> <!-- end task look -->
     </div>
 
-  <div class="main">
+    <div class="navigation">
    <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -61,11 +65,16 @@
   </div><!-- /.container-fluid -->
    </nav>
 
+  </div><!-- /.container-fluid -->
 
+  <div class="main">
     <div class="container">
       <%= yield %>
     </div>
   </div>
+
+  </div>
+  <div id="footer"></div>
 
 </body>
 </html>

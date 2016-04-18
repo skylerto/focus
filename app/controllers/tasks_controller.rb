@@ -1,11 +1,11 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_task, only: [:index, :show, :edit, :update, :destroy]
   layout 'admin'
 
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
   end
 
   # GET /tasks/1
@@ -26,7 +26,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-
+    @task.user_id = current_user.id
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
@@ -65,7 +65,14 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.find(params[:id])
+      @tasks = Task.where(user_id: current_user.id)
+      task = Task.find(params[:id]) if params[:id]
+      if current_user.tasks.include? task
+        @task = task
+      elsif (params[:id] && !current_user.tasks.include?(task))
+        flash[:notice] = "error accessing #{params[:id]}"
+        redirect_to tasks_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

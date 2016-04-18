@@ -1,19 +1,29 @@
 <p id="notice"><%= notice %></p>
 
+  <%= link_to 'Edit', edit_task_sub_task_path(:id => @sub_task) %>
 <div class="container">
   <div class="row">
-    <%= content_tag "div", class: "task", data: {task: @sub_task, url: '/tasks/' + @sub_task.task_id.to_s + '/sub_tasks'} do %>
-    <%= render 'layouts/pomodoro' %>
+    <%= content_tag "div", id: "task", data: {task: @sub_task, url: '/tasks/' + @sub_task.task_id.to_s + '/sub_tasks'} do %>
+      <%= render 'layouts/pomodoro' %>
+
+
+      <div class="row">
+        <div class="col-md-6 task_progress">
+          <div class="progression"><%= @sub_task.progress || 0 %></div>
+          <div>Current Pomodoros</div>
+        </div>
+        <div class="col-md-6 estimated_progress">
+          <div class="stay"><%= @sub_task.estimated_progress %></div>
+          <div>Estimate Pomodoros</div>
+        </div>
+      </div>
+
       <h2><%= @sub_task.title %></h2>
-      <div class="task_progress">
-        <%= @sub_task.progress %>
-      </div>
-      <div class="estimated_progress">
-        <%= @sub_task.estimated_progress %>
-      </div>
+
       <div class="complete">
         <%= @sub_task.complete %>
       </div>
+
     <% end %>
   <%= link_to 'Delete', task_sub_task_url(:id => @sub_task), :method => :delete %>
   </div>
