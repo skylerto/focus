@@ -44,12 +44,19 @@ var Clock = function(task) {
 Clock.prototype.updateProgress = function(){
     this.task.progress++;
     console.log();
+    var payload;
+    if (this.task.task_id){
+     payload = { "sub_task": this.task };
+    } else {
+     payload = { "task": this.task };
+    }
     $.ajax({
       method: "PUT",
       url: this.url + '/' + this.task.id,
       dataType: "JSON",
-      data: { "sub_task": this.task }
+      data: payload
     }).done(function(msg, err) {
+      console.log(document.URL +  ' .task_progress');
       $('.task_progress').load(document.URL +  ' .task_progress');
       //location.reload();
     });

@@ -1,3 +1,51 @@
 // Place all the styles related to the Tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// SideBar
+.sidebar {
+  width:20%;
+  float: left;
+  padding: 2em;
+  padding-left: 4em;
+  height: 100%;
+  background-color: #262A34;
+  h3 {
+    color: white;
+    margin-bottom: 2em;
+  }
+  .task {
+    .task_title {
+      width:80%;
+      float:left;
+      color: white;
+    margin-bottom: 1em;
+    }
+    .task_pomodoro {
+      color: white;
+      width:15%;
+      float:left;
+      margin-bottom: 1em;
+    }
+  }
+  .sub_task {
+    .sub_task_title {
+      color:#727985;
+      width:80%;
+      float:left;
+      margin-bottom: 1em;
+    }
+    .sub_task_pomodoro {
+      color:#727985;
+      width:15%;
+      float:left;
+      margin-bottom: 1em;
+    }
+  }
+}
+
+
+.main {
+  width:75%;
+  float:left;
+}

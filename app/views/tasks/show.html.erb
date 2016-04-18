@@ -8,9 +8,17 @@
     <%= render 'layouts/pomodoro' %>
         <!-- -->
         <h2><%= @task.title %></h2>
-      <%= @task.progress %>
-      <%= @task.estimated_progress %>
-      <%= @task.complete %>
+
+
+      <div class="task_progress">
+        <%= @task.progress %>
+      </div>
+      <div class="estimated_progress">
+        <%= @task.estimated_progress %>
+      </div>
+      <div class="complete">
+        <%= @task.complete %>
+      </div>
 
       <% end %>
 
@@ -29,16 +37,16 @@
     <%= link_to task_sub_task_url(:task_id => @task.id, :id => sub.id)  do %>
       <div class="sub_task">
         <!-- -->
-        <div class="title">
+        <div class="sub_task_title">
           <%= sub.title %>
         </div>
-        <div class="task_progress">
+        <div class="sub_task_progress">
           <%= sub.progress %>
         </div>
-        <div class="estimated_progress">
+        <div class="sub_task_estimated_progress">
           <%= sub.estimated_progress %>
         </div>
-        <div class="complete">
+        <div class="sub_task_complete">
           <%= sub.complete %>
         </div>
       </div>

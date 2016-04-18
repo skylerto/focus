@@ -7,7 +7,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <div class="sidebar">
+      <h3>Tasks</h3>
+      <% @tasks.each do |task| %>
+        <div class="task">
+          <div class="task_title"><%= task.title %></div>
+          <div class="task_pomodoro"><%= task.progress || 0 %>/<%= task.estimated_progress %></div>
+        </div>
+        <!-- loop over subtasks -->
+        <% task.sub_tasks.each do |sub| %>
+          <%= link_to task_sub_task_url(:task_id => task.id, :id => sub.id)  do %>
+            <div class="sub_task">
+              <div class="sub_task_title"><%= sub.title %></div>
+              <div class="sub_task_pomodoro"><%= sub.progress || 0 %>/<%= sub.estimated_progress %></div>
+            </div>
+          <% end %>
+        <% end %> <!-- end subtask look-->
+      <% end %> <!-- end task look -->
+    </div>
 
+  <div class="main">
    <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -28,12 +47,6 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-<!--      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-</form>-->
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li><%= link_to "Tasks", tasks_path %></li>
@@ -46,10 +59,12 @@
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
-</nav>
+   </nav>
 
-  <div class="container">
-    <%= yield %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
   </div>
 
 </body>
