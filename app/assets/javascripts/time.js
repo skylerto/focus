@@ -32,7 +32,7 @@ var Clock = function(task) {
   this.task = $('#task').data('task');
   this.url = $('#task').data('url');
   if(!this.timer){
-    this.pom = new Pomodoro(0.1, 0.05);
+    this.pom = new Pomodoro();
     this.timer = this.pom.taskTimer;
   }
   $('.timer-title').html('<h3>Task</h3>');
@@ -61,6 +61,25 @@ Clock.prototype.updateProgress = function(){
     });
 };
 
+
+Clock.prototype.complete = function(){
+    this.task.complete = true;
+    var payload;
+    if (this.task.task_id){
+     payload = { "sub_task": this.task };
+    } else {
+     payload = { "task": this.task };
+    }
+    $.ajax({
+      method: "PUT",
+      url: this.url + '/' + this.task.id,
+      dataType: "JSON",
+      data: payload
+    }).done(function(msg, err) {
+      location.reload();
+    });
+};
+
 /**
  * Are we on a break or not?
  */
@@ -76,7 +95,8 @@ Clock.prototype.done = function(){
   if(this.onBreak()){
     if (confirm('Read to start?')) {
       this.timer = this.pom.taskTimer;
-      $('.timer-title').html('<h3>Break</h3>');
+      $('.timer-title').html('<h3>Task</h3>');
+        updatePomodoro(this.timer);
       this.timer.reset();
      } else {
         this.timer.reset();
@@ -85,14 +105,16 @@ Clock.prototype.done = function(){
     this.updateProgress();
     if (confirm('Have you completed the task?')) {
       // Set the task to completed
-      this.task.complete = true;
+      this.complete();
       this.timer.reset();
     } else {
       if (confirm('Read for a break?')) {
         this.timer = this.pom.breakTimer;
-        $('.timer-title').html('<h3>Task</h3>');
+        $('.timer-title').html('<h3>Break</h3>');
+        updatePomodoro(this.timer);
       } else {
         this.timer.reset();
+        updatePomodoro(this.timer);
       }
     }
   }

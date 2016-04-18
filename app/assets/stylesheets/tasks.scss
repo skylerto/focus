@@ -29,6 +29,9 @@
       float:left;
       margin-bottom: 1em;
     }
+    &:hover{
+      color: #4A90E2;
+    }
   }
 
   .sub_task {
@@ -43,9 +46,15 @@
       float:left;
       margin-bottom: 1em;
     }
+    &:hover{
+      color: #4A90E2;
+    }
   }
   .active {
     color: #4A90E2;
+  }
+  .complete {
+    color: #7ED321;
   }
 }
 
@@ -72,11 +81,14 @@
 }
 
 .main {
-  width:75%;
+  width:60%;
   float:left;
   margin-left: 300px;
   padding: 2em;
   padding-left: 4em;
+  .task_completed {
+    color: #7ED321;
+  }
   #task {
     h2 {
       font-size: 4em;
@@ -116,3 +128,6 @@
   clear:both;
 }
 
+html {
+  width: 100%;
+}

@@ -13,14 +13,14 @@
       <% @tasks.each do |task| %>
         <%= link_to task do %>
 
-            <div class="task <%= active_class(task) %>">
+          <div class="task <%= active_class(task) %> <%= task_completed(task)%> ">
               <div class="task_title"><%= task.title %></div>
               <div class="task_pomodoro"><%= task.progress || 0 %>/<%= task.estimated_progress %></div>
             </div>
             <!-- loop over subtasks -->
             <% task.sub_tasks.each do |sub| %>
                 <%= link_to task_sub_task_url(:task_id => task.id, :id => sub.id)  do %>
-                  <div class="sub_task <%= active_class(task_sub_task_url(:task_id => task.id, :id => sub.id)) %>">
+                  <div class="sub_task <%= active_class(task_sub_task_url(:task_id => task.id, :id => sub.id)) %> <%= task_completed(sub) %>">
                     <div class="sub_task_title"><%= sub.title %></div>
                     <div class="sub_task_pomodoro"><%= sub.progress || 0 %>/<%= sub.estimated_progress %></div>
                   </div>
@@ -42,11 +42,6 @@
         <span class="icon-bar"></span>
       </button>
 
-      <% if user_signed_in? %>
-        <div class="navbar-brand"><%= link_to "Focus", tasks_path %></div>
-      <% else %>
-        <a class="navbar-brand" href="/">Focus</a>
-      <% end %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
