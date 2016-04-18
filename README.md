@@ -2,6 +2,8 @@
 
 Focus is a rails application to manage tasks using the pomodoro technique.
 
+![Focus](app/assets/images/Desktop.png)
+
 Future use, will be used to provide tangible metrics.
 
 ## Usage
