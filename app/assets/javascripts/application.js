@@ -15,7 +15,6 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require pomodoro/build/timer
-//= require pomodoro/build/pomodoro
-//= require_tree ../../../vendor/assets/javascripts/
+//= require pomodoro/dist/pomodoro
 //= require_tree .
 
