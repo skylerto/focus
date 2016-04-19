@@ -31,29 +31,18 @@
 
       <% end %>
 
-
-<%= link_to 'Back', tasks_path %>
-
-
-
 </div>
 
 <!-- add a new sub task -->
 <div class="row">
- <h4>New Subtask</h4>
-    <%= form_for([@task, @task.sub_tasks.build]) do |f| %>
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :estimated_progress %><br>
-    <%= f.number_field :estimated_progress %>
-  </div>
+  <h4>New Subtask</h4>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= bootstrap_form_for([@task, @task.sub_tasks.build]) do |f| %>
+      <%= f.text_field :title %>
+      <%= f.number_field :estimated_progress %>
+      <div class="form-group">
+        <%= f.primary %>
+      </div>
     <% end %>
 
   </div>
