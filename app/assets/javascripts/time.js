@@ -39,8 +39,13 @@ function Clock() {
     this.timer = this.pom.taskTimer;
   }
   $('.timer-title').html('<h3>Task</h3>');
+}
 
-  this.updateProgress = function(){
+
+/**
+ *
+ */
+Clock.prototype.updateProgress = function(){
     this.task.progress++;
     var payload;
     if (this.task.task_id){
@@ -61,7 +66,7 @@ function Clock() {
   };
 
 
-  this.complete = function(){
+Clock.prototype.complete = function(){
     this.task.complete = true;
     var payload;
     if (this.task.task_id){
@@ -79,69 +84,70 @@ function Clock() {
     });
   };
 
-  /**
-   * Are we on a break or not?
-   */
-  this.onBreak = function(){
-    return this.timer === this.pom.breakTimer;
-  };
 
-  /**
-   * code to be executed when the timer finishes.
-   */
-  this.done = function(){
-    // send update progress.
-    if(this.onBreak()){
-      if (confirm('Read to start?')) {
-        this.timer = this.pom.taskTimer;
-        $('.timer-title').html('<h3>Task</h3>');
-          updatePomodoro(this.timer);
+/**
+ * Are we on a break or not?
+ */
+Clock.prototype.onBreak = function(){
+  return this.timer === this.pom.breakTimer;
+};
+
+/**
+ * Code to be executed when the timer finishes.
+ */
+Clock.prototype.done = function(){
+  // send update progress.
+  if(this.onBreak()){
+    if (confirm('Read to start?')) {
+      this.timer = this.pom.taskTimer;
+      $('.timer-title').html('<h3>Task</h3>');
+        updatePomodoro(this.timer);
+      this.timer.reset();
+     } else {
         this.timer.reset();
-       } else {
-          this.timer.reset();
-       }
+     }
+  } else {
+    this.updateProgress();
+    if (confirm('Have you completed the task?')) {
+      // Set the task to completed
+      this.complete();
+      this.timer.reset();
     } else {
-      this.updateProgress();
-      if (confirm('Have you completed the task?')) {
-        // Set the task to completed
-        this.complete();
-        this.timer.reset();
+      if (confirm('Read for a break?')) {
+        this.timer = this.pom.breakTimer;
+        $('.timer-title').html('<h3>Break</h3>');
+        updatePomodoro(this.timer);
       } else {
-        if (confirm('Read for a break?')) {
-          this.timer = this.pom.breakTimer;
-          $('.timer-title').html('<h3>Break</h3>');
-          updatePomodoro(this.timer);
-        } else {
-          this.timer.reset();
-          updatePomodoro(this.timer);
-        }
+        this.timer.reset();
+        updatePomodoro(this.timer);
       }
     }
+  }
   };
 
-  this.start = function(){
-    var that = this;
-    if(this.timer){
-      this.timer.start(function(timer) {
-        if (timer.duration <= 1){
-          that.done();
-        }
-        updatePomodoro(timer);
-      });
-    } else {
-      this.createTimer();
-      this.timer.start(function(timer) {
-        if (timer.duration <= 1){
-          that._done();
-        }
-        updatePomodoro(timer);
-      });
-    }
-  };
 
-  this.pause = function(){
+
+Clock.prototype.start = function(){   
+  var that = this;
+  if(this.timer){
+    this.timer.start(function(timer) {
+      if (timer.duration <= 1){
+        that.done();
+      }
+      updatePomodoro(timer);
+    });
+  } else {
+    this.timer.start(function(timer) {
+      if (timer.duration <= 1){
+        that._done();
+      }
+      updatePomodoro(timer);
+    });
+  }
+};
+
+Clock.prototype.pause = function(){
     if(this.timer){
       this.timer.pause();
     }
-  };
-}
+};
