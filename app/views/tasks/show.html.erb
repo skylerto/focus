@@ -7,9 +7,19 @@
   <% end %>
 
 
+<div class="edit_buttons">
+  <div class="button">
+    <%= link_to 'Edit', edit_task_path(:id => @task)  %>
+  </div>
+  <div class="button">
+    <%= link_to 'Delete', task_url(:id => @task), :method => :delete %>
+  </div>
+</div>
+<div class="clear"></div>
+
+
   <%= content_tag "div", id: "task", data: {task: @task, url: '/tasks'} do %>
 
-    <%= link_to 'Edit', edit_task_path(@task) %>
     <%= render 'layouts/pomodoro' %>
     <!-- -->
       <div class="row">
@@ -25,16 +35,12 @@
 
       <h2><%= @task.title %></h2>
 
-      <div class="complete">
-        <%= @task.complete %>
-      </div>
-
       <% end %>
 
 </div>
 
 <!-- add a new sub task -->
-<div class="row">
+<div class="row new_sub_task">
   <h4>New Subtask</h4>
 
     <%= bootstrap_form_for([@task, @task.sub_tasks.build]) do |f| %>

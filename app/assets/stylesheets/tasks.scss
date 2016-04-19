@@ -2,6 +2,34 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.edit_buttons {
+  float:right;
+  width: 200px;
+  .button {
+    margin: 0.5em;
+    text-align:center;
+    height: 25px;
+    width: 80px;
+    float: left;
+    border: 1px solid #428bca;
+    border-radius: 25px;
+    &:hover {
+      background:#428bca;
+      a {
+        color:white;
+      }
+    }
+  }
+  a {
+    color:#428bca;
+    &:hover {
+      text-decoration: none;
+      background:none;
+    }
+  }
+
+}
 // SideBar
 .sidebar {
   float: left;
@@ -87,13 +115,17 @@
 
 .main {
   float:left;
-  width: 75%;
+  width: 80%;
   margin-left: 20%;
   position: absolute;
-  padding: 2em;
+  padding: 0 2em;
   padding-left: 4em;
   .container {
-    width: 75%;
+    width: 90%;
+  }
+  .new_sub_task {
+    width: 90%;
+    margin: 1em auto;
   }
   .task_completed {
     color: #7ED321;

@@ -1,7 +1,17 @@
+
+<div class="container">
 <p id="notice"><%= notice %></p>
 
-  <%= link_to 'Edit', edit_task_sub_task_path(:id => @sub_task) %>
-<div class="container">
+<div class="edit_buttons">
+  <div class="button">
+    <%= link_to 'Edit', edit_task_sub_task_path(:id => @sub_task)  %>
+  </div>
+  <div class="button">
+    <%= link_to 'Delete', task_sub_task_url(:id => @sub_task), :method => :delete %>
+  </div>
+</div>
+<div class="clear"></div>
+
   <div class="row">
     <%= content_tag "div", id: "task", data: {task: @sub_task, url: '/tasks/' + @sub_task.task_id.to_s + '/sub_tasks'} do %>
       <%= render 'layouts/pomodoro' %>
@@ -20,11 +30,6 @@
 
       <h2><%= @sub_task.title %></h2>
 
-      <div class="complete">
-        <%= @sub_task.complete %>
-      </div>
-
     <% end %>
-  <%= link_to 'Delete', task_sub_task_url(:id => @sub_task), :method => :delete %>
   </div>
 </div>
