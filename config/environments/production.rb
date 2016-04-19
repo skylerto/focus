@@ -73,6 +73,14 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+
+
+  config.assets.compress = true 
+  # Compress JavaScripts and CSS.
+  config.assets.js_compressor = :uglifier
+  config.assets.css_compressor = :sass
+  config.serve_static_files = true
   # Compress JavaScripts and CSS
   class NoCompression
     def compress(string)
@@ -80,13 +88,7 @@ Rails.application.configure do
     end
   end
 
-  config.assets.compress = false
-  # Compress JavaScripts and CSS.
-  #config.assets.js_compressor = :uglifier
-  #config.assets.css_compressor = :sass
-
   # Don't compress
   #config.assets.js_compressor = NoCompression.new
-  config.serve_static_assets = true
   #config.assets.css_compressor = NoCompression.new
 end
