@@ -43,6 +43,17 @@
     color: white;
     margin-bottom: 2em;
   }
+  .new_task {
+    width:50%;
+    text-align: center;
+    margin: 1em auto;
+    border: 1px solid #428bca;
+    color: #428bca;
+    border-radius: 25px;
+    .new_task_link {
+      text-decoration: none;
+    }
+  }
 
   .task {
     color: white;
