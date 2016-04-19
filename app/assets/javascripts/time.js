@@ -28,7 +28,7 @@ function doubleDigit(number){
  *  Bind a timer to a task
  *
  */
-var Clock = function(task) {
+function Clock(task) {
   this.task = $('#task').data('task');
   this.url = $('#task').data('url');
   if(!this.timer){
@@ -36,7 +36,7 @@ var Clock = function(task) {
     this.timer = this.pom.taskTimer;
   }
   $('.timer-title').html('<h3>Task</h3>');
-};
+}
 
 /**
  *
