@@ -79,6 +79,7 @@ Rails.application.configure do
   # Compress JavaScripts and CSS
   class NoCompression
     def compress(string)
+      string
     end
   end
 
