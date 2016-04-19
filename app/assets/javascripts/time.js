@@ -127,7 +127,7 @@ Clock.prototype.done = function(){
 
 
 
-Clock.prototype.start = function(){   
+Clock.prototype.start = function(){
   var that = this;
   if(this.timer){
     this.timer.start(function(timer) {
