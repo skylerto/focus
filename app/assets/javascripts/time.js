@@ -39,8 +39,8 @@ function Clock() {
     this.timer = this.pom.taskTimer;
   }
   $('.timer-title').html('<h3>Task</h3>');
-  return {
-  updateProgress:function(){
+
+  this.updateProgress = function(){
     this.task.progress++;
     var payload;
     if (this.task.task_id){
@@ -58,10 +58,10 @@ function Clock() {
       $('.progression').load(document.URL +  ' .progression');
       //location.reload();
     });
-  },
+  };
 
 
-  complete:function(){
+  this.complete = function(){
     this.task.complete = true;
     var payload;
     if (this.task.task_id){
@@ -77,19 +77,19 @@ function Clock() {
     }).done(function(msg, err) {
       location.reload();
     });
-  },
+  };
 
   /**
    * Are we on a break or not?
    */
-  onBreak:function(){
+  this.onBreak = function(){
     return this.timer === this.pom.breakTimer;
-  },
+  };
 
   /**
    * code to be executed when the timer finishes.
    */
-  done:function(){
+  this.done = function(){
     // send update progress.
     if(this.onBreak()){
       if (confirm('Read to start?')) {
@@ -117,9 +117,9 @@ function Clock() {
         }
       }
     }
-  },
+  };
 
-  start : function(){
+  this.start = function(){
     var that = this;
     if(this.timer){
       this.timer.start(function(timer) {
@@ -137,12 +137,11 @@ function Clock() {
         updatePomodoro(timer);
       });
     }
-  },
+  };
 
-  pause : function(){
+  this.pause = function(){
     if(this.timer){
       this.timer.pause();
     }
-  }
-};
+  };
 }
