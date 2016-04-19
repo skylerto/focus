@@ -1,6 +1,4 @@
 class SubTasksController < ApplicationController
-
-  before_action :authenticate_user!
   before_action :set_sub_task, only: [:show, :edit, :update, :destroy]
   layout 'admin'
 

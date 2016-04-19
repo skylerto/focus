@@ -4,11 +4,10 @@
 
 // SideBar
 .sidebar {
-  width:20%;
   float: left;
   height:100%;
-  position: absolute;
-  width: 300px;
+  position: fixed;
+  width: 25%;
   padding: 2em;
   padding-left: 4em;
   background-color: #262A34;
@@ -75,17 +74,27 @@
 }
 
 .navigation {
-  width:80%;
-  float:left;
-  margin-left: 300px;
+  width: 100%;
+  .container {
+    width: 75%;
+    margin-left: 24%;
+  }
+}
+
+.clear {
+  clear:both;
 }
 
 .main {
-  width:60%;
   float:left;
-  margin-left: 300px;
+  width: 75%;
+  margin-left: 20%;
+  position: absolute;
   padding: 2em;
   padding-left: 4em;
+  .container {
+    width: 75%;
+  }
   .task_completed {
     color: #7ED321;
   }
