@@ -92,7 +92,9 @@
     color: #4A90E2;
   }
   .complete {
-    color: #7ED321;
+    div {
+      text-decoration: line-through;
+    }
   }
 }
 

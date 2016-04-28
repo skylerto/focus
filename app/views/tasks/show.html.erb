@@ -20,6 +20,8 @@
 
   <%= content_tag "div", id: "task", data: {task: @task, url: '/tasks'} do %>
 
+    <h2><%= @task.title %></h2>
+
     <%= render 'layouts/pomodoro' %>
     <!-- -->
       <div class="row">
@@ -33,7 +35,6 @@
         </div>
       </div>
 
-      <h2><%= @task.title %></h2>
 
       <% end %>
 

@@ -14,9 +14,8 @@
 
   <div class="row">
     <%= content_tag "div", id: "task", data: {task: @sub_task, url: '/tasks/' + @sub_task.task_id.to_s + '/sub_tasks'} do %>
+      <h2><%= @sub_task.title %></h2>
       <%= render 'layouts/pomodoro' %>
-
-
       <div class="row">
         <div class="col-md-6 task_progress">
           <div class="progression"><%= @sub_task.progress || 0 %></div>
@@ -27,9 +26,6 @@
           <div>Estimate Pomodoros</div>
         </div>
       </div>
-
-      <h2><%= @sub_task.title %></h2>
-
     <% end %>
   </div>
 </div>
