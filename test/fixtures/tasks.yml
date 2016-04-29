@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  progress: 1
-  estimated_progress: 1
+  id: 1
+  title: "Study for AI"
+  progress: 9
+  estimated_progress: 5
   complete: false
 
 two:
@@ -11,3 +12,14 @@ two:
   progress: 1
   estimated_progress: 1
   complete: false
+
+
+#<Task id: 2, title: "finish focus rails app", progress: 2, estimated_progress: 10, complete: false, created_at: "2016-04-13 19:38:08", updated_at: "2016-04-18 19:01:31", user_id: nil>,
+##<Task id: 3, title: "get coffee", progress: nil, estimated_progress: 1, complete: false, created_at: "2016-04-13 19:38:21", updated_at: "2016-04-13 19:38:21", user_id: nil>,
+##<Task id: 4, title: "pickup my assignment", progress: nil, estimated_progress: 1, complete: true, created_at: "2016-04-13 19:38:33", updated_at: "2016-04-13 19:38:38", user_id: nil>,
+##<Task id: 5, title: "Study for AI", progress: nil, estimated_progress: 5, complete: false, created_at: "2016-04-13 20:04:03", updated_at: "2016-04-13 20:04:03", user_id: nil>,
+##<Task id: 6, title: "Study for AI", progress: nil, estimated_progress: 5, complete: false, created_at: "2016-04-13 20:04:22", updated_at: "2016-04-13 20:04:22", user_id: nil>,
+# #<Task id: 7, title: "finish focus rails app", progress: nil, estimated_progress: 10, complete: false, created_at: "2016-04-13 20:04:22", updated_at: "2016-04-13 20:04:22", user_id: nil>,
+##<Task id: 8, title: "get coffee", progress: nil, estimated_progress: 1, complete: false, created_at: "2016-04-13 20:04:22", updated_at: "2016-04-13 20:04:22", user_id: nil>,
+##<Task id: 9, title: "Study for AI", progress: nil, estimated_progress: 5, complete: false, created_at: "2016-04-13 20:06:15", updated_at: "2016-04-13 20:06:15", user_id: nil>,
+##<Task id: 10, title: "finish focus rails app", progress: nil, estimated_progress: 10, complete: false, created_at: "2016-04-13 20:06:15", updated_at: "2016-04-13 20:06:15", user_id: nil>

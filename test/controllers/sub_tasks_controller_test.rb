@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class SubTasksControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
+    sign_in users(:tom)
     @sub_task = sub_tasks(:one)
   end
 

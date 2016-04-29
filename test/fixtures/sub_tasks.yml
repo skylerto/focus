@@ -1,13 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  progress: 1
+  task_id: 1
+  title: ""
   estimated_progress: 1
-  completed: false
+  complete: false
 
 two:
-  name: MyString
-  progress: 1
+  task_id: 1
+  title: MyString
+  progress: 0
   estimated_progress: 1
-  completed: false
+  complete: false
