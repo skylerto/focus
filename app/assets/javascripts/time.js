@@ -12,7 +12,7 @@
  */
 function updatePomodoro(timer){
   document.getElementById("minutes").innerHTML = doubleDigit(timer.minutes);
-  document.getElementById("seconds").innerHTML = doubleDigit(timer.seconds - 1);
+  document.getElementById("seconds").innerHTML = doubleDigit(timer.seconds);
 }
 
 
