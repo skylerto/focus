@@ -1,27 +1,30 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <h1>All Tasks</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Expected Pomodoros</th>
+          <th>Actual Pomodoros</th>
+          <th>Pomodoros Left</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tasks.each do |task| %>
 
-<h1>Listing Tasks</h1>
+        <tr>
+          <td>
+            <%= link_to task.title, task%></td>
+          <td><%= task.progress %></td>
+          <td><%= task.estimated_progress %></td>
+          <td><%= task.estimated_progress - task.progress %></td>
+        </tr>
 
-<% @tasks.each do |task| %>
-  <%= link_to task do %>
-    <div class="task">
-        <!-- -->
-      <%= task.title %>
-      <%= task.progress %>
-      <%= task.estimated_progress %>
-      <%= task.complete %>
-    <% task.sub_tasks.each do |sub| %>
-      <div class="sub_task">
-        <!-- -->
-        <%= sub.title %>
-        <%= sub.progress %>
-        <%= sub.estimated_progress %>
-        <%= sub.complete %>
-      </div>
-    <% end %>
-    </div>
-  <% end %>
-<% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-
-<%= link_to 'New Task', new_task_path %>
+</div>

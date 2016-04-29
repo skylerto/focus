@@ -17,6 +17,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+a {
+  &:hover {
+    text-decoration: none;
+    background: none;
+  }
+}
+
 body {
   padding-bottom: 100px;
 }
