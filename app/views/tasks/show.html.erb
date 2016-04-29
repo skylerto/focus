@@ -29,8 +29,11 @@
 
   <% end %>
 </div>
-
+<hr>
 <div class="container sub_tasks">
+  <div class="row title">
+    <h2><%= @task.title %> subtasks</h2>
+  </div>
   <div class="row">
     <table class="table table-striped">
       <thead>
@@ -57,9 +60,6 @@
       </tbody>
     </table>
   </div>
-</div>
-
-<div class="container">
 
   <!-- add a new sub task -->
   <div class="row new_sub_task">
