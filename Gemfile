@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.2'
+gem 'rails', '5.0.0.beta3'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.18'
 # Use SCSS for stylesheets
@@ -25,7 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap_form'
 
-gem 'devise'
+gem 'devise', github: 'plataformatec/devise'
 gem 'rails_12factor', group: :production
 
 group :development, :test do

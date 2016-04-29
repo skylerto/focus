@@ -1,58 +1,78 @@
 <div class="row">
   <p id="notice"><%= notice %></p>
   <% if @task.complete %>
-    <h3 class="task_completed">
-      Task <%= @task.title %> Completed!
-    </h3>
+  <h3 class="task_completed">
+    Task
+    <%= @task.title %>
+    Completed!
+  </h3>
   <% end %>
 
-
-<div class="edit_buttons">
-  <div class="button">
-    <%= link_to 'Edit', edit_task_path(:id => @task)  %>
+  <div class="edit_buttons">
+    <div class="button">
+      <%= link_to 'Edit', edit_task_path(:id => @task)  %>
+    </div>
+    <div class="button">
+      <%= link_to 'Delete', task_url(:id => @task), :method => :delete %>
+    </div>
   </div>
-  <div class="button">
-    <%= link_to 'Delete', task_url(:id => @task), :method => :delete %>
-  </div>
-</div>
-<div class="clear"></div>
 
+  <div class="clear"></div>
 
   <%= content_tag "div", id: "task", data: {task: @task, url: '/tasks'} do %>
-
+  <%= render 'layouts/progress' %>
+  <div class="row">
     <h2><%= @task.title %></h2>
+  </div>
 
-    <%= render 'layouts/pomodoro' %>
-    <!-- -->
-      <div class="row">
-        <div class="col-md-6 task_progress">
-          <div class="progression"><%= @task.progress || 0 %></div>
-          <div>Current Pomodoros</div>
-        </div>
-        <div class="col-md-6 estimated_progress">
-          <div class="stay"><%= @task.estimated_progress %></div>
-          <div>Estimate Pomodoros</div>
-        </div>
-      </div>
+  <%= render 'layouts/pomodoro' %>
 
-
-      <% end %>
-
+  <% end %>
 </div>
 
-<!-- add a new sub task -->
-<div class="row new_sub_task">
-  <h4>New Subtask</h4>
+<div class="container sub_tasks">
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Subtask</th>
+          <th>Expected Pomodoros</th>
+          <th>Actual Pomodoros</th>
+          <th>Pomodoros Left</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @task.sub_tasks.each do |sub| %>
+
+        <tr>
+          <td>
+            <%= link_to sub.title, task_sub_task_url(:task_id => @task.id, :id => sub.id) %></td>
+          <td><%= sub.progress %></td>
+          <td><%= sub.estimated_progress %></td>
+          <td><%= sub.estimated_progress - sub.progress %></td>
+
+        </tr>
+
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- add a new sub task -->
+  <div class="row new_sub_task">
+    <h4>New Subtask</h4>
 
     <%= bootstrap_form_for([@task, @task.sub_tasks.build]) do |f| %>
-      <%= f.text_field :title %>
-      <%= f.number_field :estimated_progress %>
-      <div class="form-group">
-        <%= f.primary %>
-      </div>
+    <%= f.text_field :title %>
+    <%= f.number_field :estimated_progress %>
+    <div class="form-group">
+      <%= f.primary %>
+    </div>
     <% end %>
 
   </div>
 
 </div>
-

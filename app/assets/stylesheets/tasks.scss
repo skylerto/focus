@@ -30,6 +30,11 @@
   }
 
 }
+
+.sub_tasks {
+  padding: 2em 0;
+
+}
 // SideBar
 .sidebar {
   float: left;
@@ -150,7 +155,7 @@
     }
     .estimated_progress {
       font-size: 2em;
-      margin: 1em auto;
+      margin: 0 auto;
       text-align: center;
       padding-top: 1em;
       padding-bottom: 1em;
@@ -167,7 +172,7 @@
       padding-top: 1em;
       padding-bottom: 1em;
       text-align: center;
-      margin: 1em auto;
+      margin: 0 auto;
       .progression {
         color: #4A90E2;
       }
