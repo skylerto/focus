@@ -2,11 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+.welcome {
+  width: 80%;
+  margin: 0 auto;
+}
 
 .focus {
   img {
-    margin: 5em auto;
-    width: 100%;
+    margin: 1em auto;
+    width: 80%;
   }
 }

@@ -6,7 +6,7 @@ class SubTasksController < ApplicationController
   # GET /sub_tasks
   # GET /sub_tasks.json
   def index
-    @sub_tasks = SubTask.all
+    @sub_tasks = SubTask.all(:include => :title)
   end
 
   # GET /sub_tasks/1
@@ -47,7 +47,7 @@ class SubTasksController < ApplicationController
   # PATCH/PUT /sub_tasks/1.json
   def update
     @task = Task.find_by_id(params[:task_id])
-    
+
 
     respond_to do |format|
       if @sub_task.update(sub_task_params)
