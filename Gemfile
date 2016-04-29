@@ -28,6 +28,8 @@ gem 'bootstrap_form'
 gem 'devise', github: 'plataformatec/devise'
 gem 'rails_12factor', group: :production
 
+gem 'rails-controller-testing'
+
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

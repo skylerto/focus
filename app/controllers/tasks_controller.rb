@@ -66,7 +66,7 @@ class TasksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @tasks = @tasks || Task.where(user_id: current_user.id)
-      task = task || Task.find(params[:id]) if params[:id]
+      task = Task.find(params[:id]) if params[:id]
       if current_user.tasks.include? task
         @task = task
       elsif (params[:id] && !current_user.tasks.include?(task))
