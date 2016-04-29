@@ -6,6 +6,7 @@ one:
   progress: 9
   estimated_progress: 5
   complete: false
+  user_id: 1
 
 two:
   title: MyString

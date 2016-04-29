@@ -22,14 +22,14 @@ class TasksControllerTest < ActionController::TestCase
 
   test "should create task" do
     assert_difference('Task.count') do
-      post :create, task: { complete: @task.complete, estimated_progress: @task.estimated_progress, progress: @task.progress, title: @task.title }
+      post :create, params: { task: { complete: @task.complete, estimated_progress: @task.estimated_progress, progress: @task.progress, title: @task.title }}
     end
 
     assert_redirected_to task_path(assigns(:task))
   end
 
   test "should show task" do
-    get :show, id: @task
+    get :show, params: {id: @task}
     if @current_user.id != @task.id
       assert_response :redirect
     else
@@ -38,7 +38,7 @@ class TasksControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
-    get :edit, id: @task
+    get :edit, params: {id: @task}
     if @current_user.id != @task.id
       assert_response :redirect
     else
@@ -47,7 +47,7 @@ class TasksControllerTest < ActionController::TestCase
   end
 
   test "should update task" do
-    patch :update, id: @task, task: { complete: @task.complete, estimated_progress: @task.estimated_progress, progress: @task.progress, title: @task.title }
+    patch :update, params: {id: @task, task: { complete: @task.complete, estimated_progress: @task.estimated_progress, progress: @task.progress, title: @task.title }}
     if @current_user.id != @task.id
       assert_response :redirect
     else
@@ -61,7 +61,7 @@ class TasksControllerTest < ActionController::TestCase
       assert_response :ok
     else
       assert_difference('Task.count', -1) do
-        delete :destroy, id: @task
+        delete :destroy, params: { id: @task}
       end
       assert_redirected_to tasks_path
     end

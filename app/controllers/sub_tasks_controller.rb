@@ -6,7 +6,8 @@ class SubTasksController < ApplicationController
   # GET /sub_tasks
   # GET /sub_tasks.json
   def index
-    @sub_tasks = SubTask.all(:include => :title)
+    # @sub_tasks = SubTask.all(:include => :title)
+    redirect_to :tasks
   end
 
   # GET /sub_tasks/1
@@ -75,7 +76,16 @@ class SubTasksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_sub_task
       @sub_task = SubTask.find(params[:id])
-      @tasks = Task.where(user_id: current_user.id)
+      @tasks = @tasks || Task.where(user_id: current_user.id)
+
+      task = Task.find(params[:id]) if params[:id]
+      if current_user.tasks.include? task
+        @task = task
+      elsif (params[:id] && !current_user.tasks.include?(task))
+        flash[:notice] = "error accessing #{params[:id]}"
+        redirect_to tasks_path
+      end
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
