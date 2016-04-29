@@ -16,4 +16,3 @@
 //= require turbolinks
 //= require timer.js
 //= require_tree .
-

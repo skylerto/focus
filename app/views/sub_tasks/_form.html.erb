@@ -1,19 +1,20 @@
-    <%= bootstrap_form_for(@sub_task, url: task_sub_task_path(:id => @sub_task), :html => { :class => "form-horizontal" }) do |f| %>
-  <% if @sub_task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@sub_task.errors.count, "error") %> prohibited this sub_task from being saved:</h2>
+<%= bootstrap_form_for(@sub_task, url: task_sub_task_path(:id => @sub_task), :html => { :class => "form-horizontal" }) do |f| %>
+<% if @sub_task.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@sub_task.errors.count, "error") %>
+    prohibited this sub_task from being saved:</h2>
 
-      <ul>
-      <% @sub_task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% @sub_task.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <%= f.text_field :title %>
-  <%= f.number_field :estimated_progress %>
-  <div class="form-group">
-    <%= f.primary %>
-  </div>
+<%= f.text_field :title %>
+<%= f.number_field :estimated_progress %>
+<div class="form-group">
+  <%= f.primary %>
+</div>
 <% end %>

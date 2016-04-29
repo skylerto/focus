@@ -1,19 +1,20 @@
 <%= bootstrap_form_for(@task) do |f| %>
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+<% if @task.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@task.errors.count, "error") %>
+    prohibited this task from being saved:</h2>
 
-      <ul>
-      <% @task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% @task.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <%= f.text_field :title %>
-  <%= f.number_field :estimated_progress %>
-  <div class="form-group">
-    <%= f.primary %>
-  </div>
+<%= f.text_field :title %>
+<%= f.number_field :estimated_progress %>
+<div class="form-group">
+  <%= f.primary %>
+</div>
 <% end %>

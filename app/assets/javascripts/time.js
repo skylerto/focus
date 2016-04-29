@@ -10,7 +10,7 @@
  *
  * @method updatePomodoro
  */
-function updatePomodoro(timer){
+function updatePomodoro(timer) {
   document.getElementById("minutes").innerHTML = doubleDigit(timer.minutes);
   document.getElementById("seconds").innerHTML = doubleDigit(timer.seconds);
 }
@@ -21,8 +21,8 @@ function updatePomodoro(timer){
  *
  * @method doubleDigit
  */
-function doubleDigit(number){
-  return number > 9 ? "" + number :  "0" + number;
+function doubleDigit(number) {
+  return number > 9 ? "" + number : "0" + number;
 }
 
 
@@ -34,7 +34,7 @@ function doubleDigit(number){
 function Clock() {
   this.task = $('#task').data('task');
   this.url = $('#task').data('url');
-  if(!this.timer){
+  if (!this.timer) {
     this.pom = new Pomodoro();
     this.timer = this.pom.taskTimer;
   }
@@ -45,67 +45,75 @@ function Clock() {
 /**
  *
  */
-Clock.prototype.updateProgress = function(){
-    this.task.progress++;
-    var payload;
-    if (this.task.task_id){
-     payload = { "sub_task": this.task };
-    } else {
-     payload = { "task": this.task };
-    }
-    $.ajax({
-      method: "PUT",
-      url: this.url + '/' + this.task.id,
-      dataType: "JSON",
-      data: payload
-    }).done(function(msg, err) {
-      console.log(document.URL +  ' .task_progress');
-      $('.progression').load(document.URL +  ' .progression');
-      //location.reload();
-    });
-  };
+Clock.prototype.updateProgress = function() {
+  this.task.progress++;
+  var payload;
+  if (this.task.task_id) {
+    payload = {
+      "sub_task": this.task
+    };
+  } else {
+    payload = {
+      "task": this.task
+    };
+  }
+  $.ajax({
+    method: "PUT",
+    url: this.url + '/' + this.task.id,
+    dataType: "JSON",
+    data: payload
+  }).done(function(msg, err) {
+    console.log(document.URL + ' .task_progress');
+    $('.progression').load(document.URL + ' .progression');
+    //location.reload();
+  });
+};
 
 
-Clock.prototype.complete = function(){
-    this.task.complete = true;
-    var payload;
-    if (this.task.task_id){
-     payload = { "sub_task": this.task };
-    } else {
-     payload = { "task": this.task };
-    }
-    $.ajax({
-      method:  "PUT",
-      url: this.url + '/' + this.task.id,
-      dataType: "JSON",
-      data:  payload
-    }).done(function(msg, err) {
-      location.reload();
-    });
-  };
+Clock.prototype.complete = function() {
+  this.task.complete = true;
+  var payload;
+  if (this.task.task_id) {
+    payload = {
+      "sub_task": this.task
+    };
+  } else {
+    payload = {
+      "task": this.task
+    };
+  }
+  $.ajax({
+    method: "PUT",
+    url: this.url + '/' + this.task.id,
+    dataType: "JSON",
+    data: payload
+  }).done(function(msg, err) {
+    location.reload();
+  });
+};
 
 
 /**
  * Are we on a break or not?
  */
-Clock.prototype.onBreak = function(){
+Clock.prototype.onBreak = function() {
   return this.timer === this.pom.breakTimer;
 };
 
 /**
  * Code to be executed when the timer finishes.
  */
-Clock.prototype.done = function(){
+Clock.prototype.done = function() {
   // send update progress.
-  if(this.onBreak()){
+  if (this.onBreak()) {
     if (confirm('Read to start?')) {
       this.timer = this.pom.taskTimer;
       $('.timer-title').html('<h3>Task</h3>');
-        updatePomodoro(this.timer);
+      updatePomodoro(this.timer);
       this.timer.reset();
-     } else {
-        this.timer.reset();
-     }
+    } else {
+      this.timer.reset();
+    }
   } else {
     this.updateProgress();
     if (confirm('Have you completed the task?')) {
@@ -123,22 +131,22 @@ Clock.prototype.done = function(){
       }
     }
   }
-  };
+};
 
 
 
-Clock.prototype.start = function(){
+Clock.prototype.start = function() {
   var that = this;
-  if(this.timer){
+  if (this.timer) {
     this.timer.start(function(timer) {
-      if (timer.duration <= 1){
+      if (timer.duration <= 1) {
         that.done();
       }
       updatePomodoro(timer);
     });
   } else {
     this.timer.start(function(timer) {
-      if (timer.duration <= 1){
+      if (timer.duration <= 1) {
         that._done();
       }
       updatePomodoro(timer);
@@ -146,8 +154,8 @@ Clock.prototype.start = function(){
   }
 };
 
-Clock.prototype.pause = function(){
-    if(this.timer){
-      this.timer.pause();
-    }
+Clock.prototype.pause = function() {
+  if (this.timer) {
+    this.timer.pause();
+  }
 };

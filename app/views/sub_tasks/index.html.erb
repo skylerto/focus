@@ -16,15 +16,14 @@
 
   <tbody>
     <% @sub_tasks.each do |task| %>
-      <tr>
-        <td><%= task.task_id %></td>
-        <td><%= task.title %></td>
-        <td><%= task.progress %></td>
-        <td><%= task.estimated_progress %></td>
-        <td><%= task.complete %></td>
-        <td><%= link_to 'Show', task_sub_task_url(:id => task.id) %></td>
-      </tr>
+    <tr>
+      <td><%= task.task_id %></td>
+      <td><%= task.title %></td>
+      <td><%= task.progress %></td>
+      <td><%= task.estimated_progress %></td>
+      <td><%= task.complete %></td>
+      <td><%= link_to 'Show', task_sub_task_url(:id => task.id) %></td>
+    </tr>
     <% end %>
   </tbody>
 </table><br>
-
