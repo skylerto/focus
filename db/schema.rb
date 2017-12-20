@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -13,47 +12,44 @@
 
 ActiveRecord::Schema.define(version: 20160415214702) do
 
-  create_table "sub_tasks", force: :cascade do |t|
-    t.integer  "task_id",            limit: 4
-    t.string   "title",              limit: 255
-    t.integer  "progress",           limit: 4,   default: 0
-    t.integer  "estimated_progress", limit: 4,   default: 0
-    t.boolean  "complete",           limit: 1,   default: false
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+  create_table "sub_tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "task_id"
+    t.string   "title"
+    t.integer  "progress",           default: 0
+    t.integer  "estimated_progress", default: 0
+    t.boolean  "complete",           default: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["task_id"], name: "index_sub_tasks_on_task_id", using: :btree
   end
 
-  add_index "sub_tasks", ["task_id"], name: "index_sub_tasks_on_task_id", using: :btree
-
-  create_table "tasks", force: :cascade do |t|
-    t.string   "title",              limit: 255
-    t.integer  "progress",           limit: 4,   default: 0
-    t.integer  "estimated_progress", limit: 4,   default: 0
-    t.boolean  "complete",           limit: 1,   default: false
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
-    t.integer  "user_id",            limit: 4
+  create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title"
+    t.integer  "progress",           default: 0
+    t.integer  "estimated_progress", default: 0
+    t.boolean  "complete",           default: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id", using: :btree
   end
 
-  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id", using: :btree
-
-  create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "tasks", "users"
 end
